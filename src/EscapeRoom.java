@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EscapeRoom {
 
@@ -10,42 +12,49 @@ public class EscapeRoom {
      */
 
     // J-Frame
-        static JFrame EscapeRoomGameWindow;
+    static JFrame EscapeRoomGameWindow;
     // J-Panel
-        static JPanel EscapeRoomGamePanel;
+    static JPanel EscapeRoomGamePanel;
     // J-button
-        //Bed Buttons
-        static JButton bedButtonThatBringsYouToTheBed;
-        static JButton bedButtonThatMakesYouLookUnderTheBed;
-        static JButton bedButtonThatMakesYouMoveTheCover;
-        static JButton pickUpThePhoneFromTheBed;
+    //Bed Buttons
+    static JButton bedButtonThatBringsYouToTheBed;
+    static JButton bedButtonThatMakesYouLookUnderTheBed;
+    static JButton bedButtonThatMakesYouMoveTheCover;
+    static JButton pickUpThePhoneFromTheBed;
 
-        //Door Buttons
-        static JButton doorKnob;
-        static JButton goToTheDoor;
+    //Door Buttons
+    static JButton doorKnob;
+    static JButton goToTheDoor;
+    static JButton backToMain;
 
-        //Pass Code
-    static JButton topLeftNumber1
-    static JButton topMiddleNumber2
-    static JButton topRightNumber
-    static JButton
-    static JButton
-    static JButton
-    static JButton
-    static JButton
-    static JButton
+    //Pass Code
+    static JCheckBox topLeftNumber1;
+    static JCheckBox topMiddleNumber2;
+    static JCheckBox topRightNumber3;
+    static JCheckBox middleRightNumber6;
+    static JCheckBox middleMiddleNumber5;
+    static JCheckBox middleLeftNumber4;
+    static JCheckBox bottomLeftNumber7;
+    static JCheckBox bottomMiddleNumber8;
+    static JCheckBox bottomRightNumber9;
     // J-Labels
+
+        //PassCode Label
+        static JLabel passCodeDisplay;
 
 
     // J-Text Field
     public static void main(String[] args) {
 
-        //Main Methods
         gui();
-    }
-    //GUI
-    public static void gui(){
 
+
+
+
+    }
+
+    //GUI
+    public static void gui() {
         //Window
         EscapeRoomGameWindow = new JFrame("ESCAPE ROOM");
         EscapeRoomGameWindow.setSize(1350, 750);
@@ -53,21 +62,154 @@ public class EscapeRoom {
         EscapeRoomGameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Panel
+
         EscapeRoomGamePanel = new JPanel();
+        EscapeRoomGameWindow.add(EscapeRoomGamePanel);
+        EscapeRoomGamePanel.setVisible(true);
+        EscapeRoomGameWindow.setVisible(true);
+        EscapeRoomGamePanel.setLayout(null);
+
         //Buttons
+        bedButtonThatBringsYouToTheBed = new JButton("Bed");
+
+        goToTheDoor = new JButton("Door");
+
+        //Buttons on the opening screen
+
+        EscapeRoomGamePanel.add(bedButtonThatBringsYouToTheBed);
+        bedButtonThatBringsYouToTheBed.setBounds(900, 400, 100, 20);
+
+        EscapeRoomGamePanel.add(goToTheDoor);
+        goToTheDoor.setBounds(100, 200, 100, 20);
+        goToTheDoor.addActionListener(new doorButtonListener());
+
+
+        //Door Buttons on Panel
+        topRightNumber3 = new JCheckBox("3");
+        topLeftNumber1 = new JCheckBox("1");
+        topMiddleNumber2 = new JCheckBox("2");
+        middleLeftNumber4 = new JCheckBox("4");
+        middleMiddleNumber5 = new JCheckBox("5");
+        middleRightNumber6 = new JCheckBox("6");
+        bottomLeftNumber7 = new JCheckBox("7");
+        bottomMiddleNumber8 = new JCheckBox("8");
+        bottomRightNumber9 = new JCheckBox("9");
+        backToMain = new JButton("BACK");
+
+        EscapeRoomGamePanel.add(topLeftNumber1);
+        topLeftNumber1.setBounds(400, 300, 100, 20);
+        EscapeRoomGamePanel.add(topRightNumber3);
+        topRightNumber3.setBounds(600, 300, 100, 20);
+        EscapeRoomGamePanel.add(topMiddleNumber2);
+        topMiddleNumber2.setBounds(500, 300, 100, 20);
+        EscapeRoomGamePanel.add(middleLeftNumber4);
+        middleLeftNumber4.setBounds(400, 400, 100, 20);
+        EscapeRoomGamePanel.add(middleMiddleNumber5);
+        middleMiddleNumber5.setBounds(500, 400, 100, 20);
+        EscapeRoomGamePanel.add(middleRightNumber6);
+        middleRightNumber6.setBounds(600, 400, 100, 20);
+        EscapeRoomGamePanel.add(bottomLeftNumber7);
+        bottomLeftNumber7.setBounds(400, 500, 100, 20);
+        EscapeRoomGamePanel.add(bottomMiddleNumber8);
+        bottomMiddleNumber8.setBounds(500, 500, 100, 20);
+        EscapeRoomGamePanel.add(bottomRightNumber9);
+        bottomRightNumber9.setBounds(600, 500, 100, 20);
+        EscapeRoomGamePanel.add(backToMain);
+
+        backToMain.setBounds(100, 300, 100, 20);
+        backToMain.addActionListener(new backDoorButton());
 
         //Labels
 
+        passCodeDisplay = new JLabel("ESCAPED");
+        EscapeRoomGamePanel.add(passCodeDisplay);
+        passCodeDisplay.setBounds(600, 200, 100, 20);
+
         //.setVisable
-        EscapeRoomGameWindow.setVisible(true);
         EscapeRoomGamePanel.setVisible(true);
+        EscapeRoomGameWindow.setVisible(true);
+
+        EscapeRoomGamePanel.remove(topLeftNumber1);
+        EscapeRoomGamePanel.remove(topMiddleNumber2);
+        EscapeRoomGamePanel.remove(topRightNumber3);
+        EscapeRoomGamePanel.remove(middleLeftNumber4);
+        EscapeRoomGamePanel.remove(middleMiddleNumber5);
+        EscapeRoomGamePanel.remove(middleRightNumber6);
+        EscapeRoomGamePanel.remove(bottomLeftNumber7);
+        EscapeRoomGamePanel.remove(bottomMiddleNumber8);
+        EscapeRoomGamePanel.remove(bottomRightNumber9);
+        EscapeRoomGamePanel.remove(backToMain);
+        passCodeDisplay.setVisible(false);
+        EscapeRoomGamePanel.updateUI();
+
 
     }
 
+
     //Bed
 
-    //Door
 
-    //Pass Code
+    //Door
+    public static void door() {
+        EscapeRoomGamePanel.add(topLeftNumber1);
+        EscapeRoomGamePanel.add(topMiddleNumber2);
+        EscapeRoomGamePanel.add(topRightNumber3);
+        EscapeRoomGamePanel.add(middleLeftNumber4);
+        EscapeRoomGamePanel.add(middleMiddleNumber5);
+        EscapeRoomGamePanel.add(middleRightNumber6);
+        EscapeRoomGamePanel.add(bottomLeftNumber7);
+        EscapeRoomGamePanel.add(bottomMiddleNumber8);
+        EscapeRoomGamePanel.add(bottomRightNumber9);
+        EscapeRoomGamePanel.add(backToMain);
+
+        if (topLeftNumber1.isSelected()) {
+            passCodeDisplay.setVisible(true);
+            EscapeRoomGamePanel.updateUI();
+        } else {
+            passCodeDisplay = new JLabel("Try Again");
+            passCodeDisplay.setVisible(true);
+            EscapeRoomGamePanel.updateUI();
+        }
+
+        EscapeRoomGamePanel.updateUI();
+
+    }
+    public static void passCode(){
+
+    }
+    public static void removeDoor(){
+        EscapeRoomGamePanel.remove(topLeftNumber1);
+        EscapeRoomGamePanel.remove(topMiddleNumber2);
+        EscapeRoomGamePanel.remove(topRightNumber3);
+        EscapeRoomGamePanel.remove(middleLeftNumber4);
+        EscapeRoomGamePanel.remove(middleMiddleNumber5);
+        EscapeRoomGamePanel.remove(middleRightNumber6);
+        EscapeRoomGamePanel.remove(bottomLeftNumber7);
+        EscapeRoomGamePanel.remove(bottomMiddleNumber8);
+        EscapeRoomGamePanel.remove(bottomRightNumber9);
+        EscapeRoomGamePanel.remove(backToMain);
+        EscapeRoomGamePanel.add(goToTheDoor);
+        EscapeRoomGamePanel.add(bedButtonThatBringsYouToTheBed);
+        EscapeRoomGamePanel.updateUI();
+    }
+    //button actions listeners
+    private static class doorButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent){
+             EscapeRoomGamePanel.remove(bedButtonThatBringsYouToTheBed);
+             EscapeRoomGamePanel.remove(goToTheDoor);
+             EscapeRoomGamePanel.updateUI();
+
+             door();
+
+        }
+    }
+    private static class backDoorButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            removeDoor();
+            EscapeRoomGamePanel.updateUI();
+        }
+    }
 
 }
