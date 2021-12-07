@@ -19,8 +19,9 @@ public class EscapeRoom {
     //Bed Buttons
     static JButton bedButtonThatBringsYouToTheBed;
     static JButton bedButtonThatMakesYouLookUnderTheBed;
-    static JButton bedButtonThatMakesYouMoveTheCover;
+    static JButton bedButtonThatMakesYouLookOnTheBed;
     static JButton pickUpThePhoneFromTheBed;
+    static JButton lookAtDresser;
 
     //Door Buttons
     static JButton doorKnob;
@@ -78,10 +79,21 @@ public class EscapeRoom {
 
         EscapeRoomGamePanel.add(bedButtonThatBringsYouToTheBed);
         bedButtonThatBringsYouToTheBed.setBounds(900, 400, 100, 20);
+        bedButtonThatBringsYouToTheBed.addActionListener( new bedButtonListener());
 
         EscapeRoomGamePanel.add(goToTheDoor);
         goToTheDoor.setBounds(100, 200, 100, 20);
         goToTheDoor.addActionListener(new doorButtonListener());
+
+        // Bed buttons
+        bedButtonThatMakesYouLookUnderTheBed = new JButton("Under Bed");
+        bedButtonThatMakesYouLookUnderTheBed.setBounds(400, 500, 100, 20);
+
+        bedButtonThatMakesYouLookOnTheBed = new JButton("Top of the Bed");
+        bedButtonThatMakesYouLookOnTheBed.setBounds(400, 200, 200, 20);
+
+        lookAtDresser = new JButton("Dresser");
+        lookAtDresser.setBounds(600, 300, 100, 20);
 
 
         //Door Buttons on Panel
@@ -192,6 +204,24 @@ public class EscapeRoom {
         EscapeRoomGamePanel.add(bedButtonThatBringsYouToTheBed);
         EscapeRoomGamePanel.updateUI();
     }
+    public static void dresser(){
+
+    }
+    public static void upperBed(){
+
+    }
+    public static void underBed(){
+
+    }
+    public static void phone(){
+
+    }
+    public static void unLockDoor(){
+
+    }
+    public static void openDresser(){
+
+    }
     //button actions listeners
     private static class doorButtonListener implements ActionListener{
         @Override
@@ -208,6 +238,17 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent e) {
             removeDoor();
+            EscapeRoomGamePanel.updateUI();
+        }
+    }
+    private static class bedButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            EscapeRoomGamePanel.remove(goToTheDoor);
+            EscapeRoomGamePanel.remove(bedButtonThatBringsYouToTheBed);
+            EscapeRoomGamePanel.add(bedButtonThatMakesYouLookUnderTheBed);
+            EscapeRoomGamePanel.add(bedButtonThatMakesYouLookOnTheBed);
+            EscapeRoomGamePanel.add(lookAtDresser);
             EscapeRoomGamePanel.updateUI();
         }
     }
