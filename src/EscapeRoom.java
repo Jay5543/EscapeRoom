@@ -22,6 +22,9 @@ public class EscapeRoom {
     static JButton bedButtonThatMakesYouLookOnTheBed;
     static JButton pickUpThePhoneFromTheBed;
     static JButton lookAtDresser;
+    // dresser buttons
+    static JButton dresserOpenerThing;
+    static JButton note;
 
     //Door Buttons
     static JButton doorKnob;
@@ -94,6 +97,12 @@ public class EscapeRoom {
 
         lookAtDresser = new JButton("Dresser");
         lookAtDresser.setBounds(600, 300, 100, 20);
+        lookAtDresser.addActionListener(new dresserListener());
+
+        //Dresser buttons
+        dresserOpenerThing = new JButton("Dresser thing ");
+        dresserOpenerThing.setBounds(400, 200, 100, 20);
+        dresserOpenerThing.addActionListener(new dresserListener());
 
 
         //Door Buttons on Panel
@@ -128,8 +137,8 @@ public class EscapeRoom {
         bottomRightNumber9.setBounds(600, 500, 100, 20);
         EscapeRoomGamePanel.add(backToMain);
 
-        backToMain.setBounds(100, 300, 100, 20);
-        backToMain.addActionListener(new backDoorButton());
+        backToMain.setBounds(400, 600, 100, 20);
+        backToMain.addActionListener(new backToMainListener());
 
         //Labels
 
@@ -174,12 +183,12 @@ public class EscapeRoom {
         EscapeRoomGamePanel.add(bottomRightNumber9);
         EscapeRoomGamePanel.add(backToMain);
 
+        passCodeDisplay = new JLabel("Try Again");
         if (topLeftNumber1.isSelected()) {
-            passCodeDisplay.setVisible(true);
+            EscapeRoomGamePanel.add(passCodeDisplay);
             EscapeRoomGamePanel.updateUI();
         } else {
-            passCodeDisplay = new JLabel("Try Again");
-            passCodeDisplay.setVisible(true);
+            EscapeRoomGamePanel.add(passCodeDisplay);
             EscapeRoomGamePanel.updateUI();
         }
 
@@ -189,22 +198,17 @@ public class EscapeRoom {
     public static void passCode(){
 
     }
-    public static void removeDoor(){
-        EscapeRoomGamePanel.remove(topLeftNumber1);
-        EscapeRoomGamePanel.remove(topMiddleNumber2);
-        EscapeRoomGamePanel.remove(topRightNumber3);
-        EscapeRoomGamePanel.remove(middleLeftNumber4);
-        EscapeRoomGamePanel.remove(middleMiddleNumber5);
-        EscapeRoomGamePanel.remove(middleRightNumber6);
-        EscapeRoomGamePanel.remove(bottomLeftNumber7);
-        EscapeRoomGamePanel.remove(bottomMiddleNumber8);
-        EscapeRoomGamePanel.remove(bottomRightNumber9);
-        EscapeRoomGamePanel.remove(backToMain);
+    public static void back(){
+        EscapeRoomGamePanel.removeAll();
         EscapeRoomGamePanel.add(goToTheDoor);
         EscapeRoomGamePanel.add(bedButtonThatBringsYouToTheBed);
         EscapeRoomGamePanel.updateUI();
     }
     public static void dresser(){
+        EscapeRoomGamePanel.add(dresserOpenerThing);
+        EscapeRoomGamePanel.add(note);
+        EscapeRoomGamePanel.add(backToMain);
+        EscapeRoomGamePanel.updateUI();
 
     }
     public static void upperBed(){
@@ -223,6 +227,13 @@ public class EscapeRoom {
 
     }
     //button actions listeners
+    private static class backToMainListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            back();
+        }
+    }
+
     private static class doorButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent actionEvent){
@@ -234,13 +245,7 @@ public class EscapeRoom {
 
         }
     }
-    private static class backDoorButton implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            removeDoor();
-            EscapeRoomGamePanel.updateUI();
-        }
-    }
+
     private static class bedButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -249,6 +254,14 @@ public class EscapeRoom {
             EscapeRoomGamePanel.add(bedButtonThatMakesYouLookUnderTheBed);
             EscapeRoomGamePanel.add(bedButtonThatMakesYouLookOnTheBed);
             EscapeRoomGamePanel.add(lookAtDresser);
+            EscapeRoomGamePanel.add(backToMain);
+            EscapeRoomGamePanel.updateUI();
+        }
+    }
+    private static class dresserListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dresser();
             EscapeRoomGamePanel.updateUI();
         }
     }
