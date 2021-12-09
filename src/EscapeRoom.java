@@ -102,7 +102,7 @@ public class EscapeRoom {
         //Dresser buttons
         dresserOpenerThing = new JButton("Dresser thing ");
         dresserOpenerThing.setBounds(400, 200, 100, 20);
-        dresserOpenerThing.addActionListener(new dresserListener());
+        //dresserOpenerThing.addActionListener(new ());
 
 
         //Door Buttons on Panel
@@ -205,12 +205,21 @@ public class EscapeRoom {
         EscapeRoomGamePanel.updateUI();
     }
     public static void dresser(){
+       // I have to call it here weird but ok
+        dresserOpenerThing = new JButton("Open");
+        dresserOpenerThing.setBounds(600, 400, 100, 20);
+        dresserOpenerThing.addActionListener(new dresserOpenerThingListener());
+        note = new JButton("Note");
+        note.setBounds(600, 200, 100, 20);
+        note.addActionListener(new note());
+        EscapeRoomGamePanel.removeAll();
         EscapeRoomGamePanel.add(dresserOpenerThing);
         EscapeRoomGamePanel.add(note);
         EscapeRoomGamePanel.add(backToMain);
         EscapeRoomGamePanel.updateUI();
 
     }
+
     public static void upperBed(){
 
     }
@@ -224,6 +233,8 @@ public class EscapeRoom {
 
     }
     public static void openDresser(){
+
+        //Esc
 
     }
     //button actions listeners
@@ -263,6 +274,18 @@ public class EscapeRoom {
         public void actionPerformed(ActionEvent e) {
             dresser();
             EscapeRoomGamePanel.updateUI();
+        }
+    }
+    private static class dresserOpenerThingListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            JOptionPane.showMessageDialog(null, "Empty");
+        }
+    }
+    private static class note implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            JOptionPane.showMessageDialog(null, "Remember to check you phone");
         }
     }
 
