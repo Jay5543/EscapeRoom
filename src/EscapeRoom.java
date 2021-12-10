@@ -26,6 +26,11 @@ public class EscapeRoom {
     static JButton dresserOpenerThing;
     static JButton note;
 
+    //phone stuff
+    static JButton phone, pillow;
+    static JRadioButton momMessage, dadMessage, unKnownMessage, zachMessage, aignerMessage;
+    static ButtonGroup phoneMessages = new ButtonGroup();
+
     //Door Buttons
     static JButton doorKnob;
     static JButton goToTheDoor;
@@ -94,6 +99,7 @@ public class EscapeRoom {
 
         bedButtonThatMakesYouLookOnTheBed = new JButton("Top of the Bed");
         bedButtonThatMakesYouLookOnTheBed.setBounds(400, 200, 200, 20);
+        bedButtonThatMakesYouLookOnTheBed.addActionListener(new UpperBedListener());
 
         lookAtDresser = new JButton("Dresser");
         lookAtDresser.setBounds(600, 300, 100, 20);
@@ -102,7 +108,42 @@ public class EscapeRoom {
         //Dresser buttons
         dresserOpenerThing = new JButton("Dresser thing ");
         dresserOpenerThing.setBounds(400, 200, 100, 20);
-        //dresserOpenerThing.addActionListener(new ());
+
+        //top of bed buttons
+        phone = new JButton("Phone");
+        phone.setBounds(600, 200, 100, 20);
+        EscapeRoomGamePanel.add(phone);
+        EscapeRoomGamePanel.remove(phone);
+
+        //phone messages
+        momMessage = new JRadioButton("Mother");
+        momMessage.setBounds(200, 200, 100, 20);
+        dadMessage = new JRadioButton("Father");
+        dadMessage.setBounds(200, 300, 100, 20);
+        unKnownMessage = new JRadioButton("UNKNOWN NUMBER");
+        unKnownMessage.setBounds(200, 400, 100, 20);
+        zachMessage = new JRadioButton("Zack");
+        zachMessage.setBounds(200, 500, 100, 20);
+        aignerMessage = new JRadioButton("Bestie");
+        aignerMessage.setBounds(200, 600, 100, 20);
+
+        phoneMessages.add(momMessage);
+        phoneMessages.add(dadMessage);
+        phoneMessages.add(unKnownMessage);
+        phoneMessages.add(zachMessage);
+        phoneMessages.add(aignerMessage);
+
+        EscapeRoomGamePanel.add(momMessage);
+        EscapeRoomGamePanel.add(dadMessage);
+        EscapeRoomGamePanel.add(unKnownMessage);
+        EscapeRoomGamePanel.add(zachMessage);
+        EscapeRoomGamePanel.add(aignerMessage);
+
+        EscapeRoomGamePanel.remove(momMessage);
+        EscapeRoomGamePanel.remove(dadMessage);
+        EscapeRoomGamePanel.remove(unKnownMessage);
+        EscapeRoomGamePanel.remove(zachMessage);
+        EscapeRoomGamePanel.remove(aignerMessage);
 
 
         //Door Buttons on Panel
@@ -222,11 +263,23 @@ public class EscapeRoom {
 
     public static void upperBed(){
 
+        EscapeRoomGamePanel.removeAll();
+        EscapeRoomGamePanel.add(phone);
+        EscapeRoomGamePanel.add(backToMain);
+        EscapeRoomGamePanel.updateUI();
+
     }
     public static void underBed(){
 
     }
     public static void phone(){
+        EscapeRoomGamePanel.removeAll();
+        EscapeRoomGamePanel.add(momMessage);
+        EscapeRoomGamePanel.add(dadMessage);
+        EscapeRoomGamePanel.add(unKnownMessage);
+        EscapeRoomGamePanel.add(zachMessage);
+        EscapeRoomGamePanel.add(aignerMessage);
+        EscapeRoomGamePanel.updateUI();
 
     }
     public static void unLockDoor(){
@@ -286,6 +339,18 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             JOptionPane.showMessageDialog(null, "Remember to check you phone");
+        }
+    }
+    private static class UpperBedListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            upperBed();
+        }
+    }
+    private static class phoneMessagesListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            phone();
         }
     }
 
