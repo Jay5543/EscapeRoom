@@ -30,6 +30,7 @@ public class EscapeRoom {
     static JButton phone, pillow;
     static JRadioButton momMessage, dadMessage, unKnownMessage, zachMessage, aignerMessage;
     static ButtonGroup phoneMessages = new ButtonGroup();
+    static JButton checkMessages;
 
     //Door Buttons
     static JButton doorKnob;
@@ -51,14 +52,18 @@ public class EscapeRoom {
         //PassCode Label
         static JLabel passCodeDisplay;
 
+        //Messages labels
+        static JLabel momMessageLog;
+        static JLabel dadMessageLog;
+        static JLabel unKnownMessageLog;
+        static JLabel zachMessageLog;
+        static JLabel aignerMessageLog;
+
 
     // J-Text Field
     public static void main(String[] args) {
 
         gui();
-
-
-
 
     }
 
@@ -114,6 +119,7 @@ public class EscapeRoom {
         phone.setBounds(600, 200, 100, 20);
         EscapeRoomGamePanel.add(phone);
         EscapeRoomGamePanel.remove(phone);
+        phone.addActionListener(new phoneMessagesListener());
 
         //phone messages
         momMessage = new JRadioButton("Mother");
@@ -121,7 +127,7 @@ public class EscapeRoom {
         dadMessage = new JRadioButton("Father");
         dadMessage.setBounds(200, 300, 100, 20);
         unKnownMessage = new JRadioButton("UNKNOWN NUMBER");
-        unKnownMessage.setBounds(200, 400, 100, 20);
+        unKnownMessage.setBounds(200, 400, 200, 20);
         zachMessage = new JRadioButton("Zack");
         zachMessage.setBounds(200, 500, 100, 20);
         aignerMessage = new JRadioButton("Bestie");
@@ -144,6 +150,12 @@ public class EscapeRoom {
         EscapeRoomGamePanel.remove(unKnownMessage);
         EscapeRoomGamePanel.remove(zachMessage);
         EscapeRoomGamePanel.remove(aignerMessage);
+
+        checkMessages = new JButton("Check messages");
+        checkMessages.setBounds(600, 600, 100, 20);
+        EscapeRoomGamePanel.add(checkMessages);
+        EscapeRoomGamePanel.remove(checkMessages);
+        checkMessages.addActionListener(new checkMessages());
 
 
         //Door Buttons on Panel
@@ -186,6 +198,22 @@ public class EscapeRoom {
         passCodeDisplay = new JLabel("ESCAPED");
         EscapeRoomGamePanel.add(passCodeDisplay);
         passCodeDisplay.setBounds(600, 200, 100, 20);
+
+        momMessageLog = new JLabel("STOP LEAVING YOUR CHARGER - 1");
+        momMessageLog.setBounds(600, 400, 400, 300);
+        dadMessageLog = new JLabel("LOL I have your charger - 5");
+        dadMessageLog.setBounds(600, 400, 400, 300);
+        unKnownMessageLog = new JLabel("ΔΚΛΓ - 9");
+        unKnownMessageLog.setBounds(600, 400, 400, 300);
+        zachMessageLog = new JLabel("Bro can you do my essay? - 3");
+        zachMessageLog.setBounds(600, 400, 400, 300);
+        aignerMessageLog = new JLabel("Jeremy I LOVE YOU HABIBI. I want to watch star later when I get back from band.");
+        aignerMessageLog.setBounds(600, 400, 400, 300);
+        EscapeRoomGamePanel.remove(momMessageLog);
+        EscapeRoomGamePanel.remove(dadMessageLog);
+        EscapeRoomGamePanel.remove(unKnownMessageLog);
+        EscapeRoomGamePanel.remove(zachMessageLog);
+        EscapeRoomGamePanel.remove(aignerMessageLog);
 
         //.setVisable
         EscapeRoomGamePanel.setVisible(true);
@@ -279,8 +307,56 @@ public class EscapeRoom {
         EscapeRoomGamePanel.add(unKnownMessage);
         EscapeRoomGamePanel.add(zachMessage);
         EscapeRoomGamePanel.add(aignerMessage);
+        EscapeRoomGamePanel.add(checkMessages);
         EscapeRoomGamePanel.updateUI();
 
+    }
+    public static void phoneLog(){
+        if (momMessage.isSelected()){
+            EscapeRoomGamePanel.remove(dadMessageLog);
+            EscapeRoomGamePanel.remove(momMessageLog);
+            EscapeRoomGamePanel.remove(unKnownMessageLog);
+            EscapeRoomGamePanel.remove(zachMessageLog);
+            EscapeRoomGamePanel.remove(aignerMessageLog);
+            EscapeRoomGamePanel.add(momMessageLog);
+            EscapeRoomGamePanel.updateUI();
+        }
+        if (dadMessage.isSelected()){
+            EscapeRoomGamePanel.remove(momMessageLog);
+            EscapeRoomGamePanel.remove(unKnownMessageLog);
+            EscapeRoomGamePanel.remove(zachMessageLog);
+            EscapeRoomGamePanel.remove(aignerMessageLog);
+            EscapeRoomGamePanel.add(dadMessageLog);
+            EscapeRoomGamePanel.updateUI();
+        }
+        if (unKnownMessage.isSelected()){
+            EscapeRoomGamePanel.remove(zachMessageLog);
+            EscapeRoomGamePanel.remove(aignerMessageLog);
+            EscapeRoomGamePanel.remove(dadMessageLog);
+            EscapeRoomGamePanel.remove(momMessageLog);
+            EscapeRoomGamePanel.add(unKnownMessageLog);
+            EscapeRoomGamePanel.updateUI();
+        }
+        if (zachMessage.isSelected()){
+
+            EscapeRoomGamePanel.remove(unKnownMessageLog);
+            EscapeRoomGamePanel.remove(aignerMessageLog);
+            EscapeRoomGamePanel.remove(dadMessageLog);
+            EscapeRoomGamePanel.remove(momMessageLog);
+            EscapeRoomGamePanel.add(zachMessageLog);
+            EscapeRoomGamePanel.updateUI();
+
+        }
+        if (aignerMessage.isSelected()){
+
+            EscapeRoomGamePanel.remove(momMessageLog);
+            EscapeRoomGamePanel.remove(unKnownMessageLog);
+            EscapeRoomGamePanel.remove(zachMessageLog);
+            EscapeRoomGamePanel.remove(dadMessageLog);
+            EscapeRoomGamePanel.add(aignerMessageLog);
+            EscapeRoomGamePanel.updateUI();
+
+        }
     }
     public static void unLockDoor(){
 
@@ -351,6 +427,12 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             phone();
+        }
+    }
+    private static class checkMessages implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            phoneLog();
         }
     }
 
