@@ -8,7 +8,7 @@ public class EscapeRoom {
     /*
     Plan - Escape Room
     Make a GUI
-    Make searios
+    Make scenarios
      */
 
     // J-Frame
@@ -20,20 +20,19 @@ public class EscapeRoom {
     static JButton bedButtonThatBringsYouToTheBed;
     static JButton bedButtonThatMakesYouLookUnderTheBed;
     static JButton bedButtonThatMakesYouLookOnTheBed;
-    static JButton pickUpThePhoneFromTheBed;
     static JButton lookAtDresser;
     // dresser buttons
     static JButton dresserOpenerThing;
     static JButton note;
 
     //phone stuff
-    static JButton phone, pillow;
+    static JButton phone;
     static JRadioButton momMessage, dadMessage, unKnownMessage, zachMessage, aignerMessage;
     static ButtonGroup phoneMessages = new ButtonGroup();
     static JButton checkMessages;
 
     //Door Buttons
-    static JButton doorKnob;
+    static JButton unLock;
     static JButton goToTheDoor;
     static JButton backToMain;
 
@@ -98,9 +97,22 @@ public class EscapeRoom {
         goToTheDoor.setBounds(100, 200, 100, 20);
         goToTheDoor.addActionListener(new doorButtonListener());
 
+        EscapeRoomGamePanel.add(goToTheDoor);
+        goToTheDoor.setBounds(100, 200, 100, 20);
+        goToTheDoor.addActionListener(new doorButtonListener());
+
+        unLock = new JButton("Unlock");
+        EscapeRoomGamePanel.add(unLock);
+        unLock.setBounds(100, 200, 100, 20);
+        unLock.addActionListener(new passWord());
+        EscapeRoomGamePanel.remove(unLock);
+
+
+
         // Bed buttons
         bedButtonThatMakesYouLookUnderTheBed = new JButton("Under Bed");
         bedButtonThatMakesYouLookUnderTheBed.setBounds(400, 500, 100, 20);
+        bedButtonThatMakesYouLookUnderTheBed.addActionListener(new underBedButtonListener());
 
         bedButtonThatMakesYouLookOnTheBed = new JButton("Top of the Bed");
         bedButtonThatMakesYouLookOnTheBed.setBounds(400, 200, 200, 20);
@@ -152,7 +164,7 @@ public class EscapeRoom {
         EscapeRoomGamePanel.remove(aignerMessage);
 
         checkMessages = new JButton("Check messages");
-        checkMessages.setBounds(600, 600, 100, 20);
+        checkMessages.setBounds(600, 600, 150, 20);
         EscapeRoomGamePanel.add(checkMessages);
         EscapeRoomGamePanel.remove(checkMessages);
         checkMessages.addActionListener(new checkMessages());
@@ -215,7 +227,7 @@ public class EscapeRoom {
         EscapeRoomGamePanel.remove(zachMessageLog);
         EscapeRoomGamePanel.remove(aignerMessageLog);
 
-        //.setVisable
+        //.setVisible
         EscapeRoomGamePanel.setVisible(true);
         EscapeRoomGameWindow.setVisible(true);
 
@@ -241,6 +253,8 @@ public class EscapeRoom {
 
     //Door
     public static void door() {
+
+        EscapeRoomGamePanel.add(unLock);
         EscapeRoomGamePanel.add(topLeftNumber1);
         EscapeRoomGamePanel.add(topMiddleNumber2);
         EscapeRoomGamePanel.add(topRightNumber3);
@@ -252,21 +266,8 @@ public class EscapeRoom {
         EscapeRoomGamePanel.add(bottomRightNumber9);
         EscapeRoomGamePanel.add(backToMain);
 
-        passCodeDisplay = new JLabel("Try Again");
-        if (topLeftNumber1.isSelected()) {
-            EscapeRoomGamePanel.add(passCodeDisplay);
-            EscapeRoomGamePanel.updateUI();
-        } else {
-            EscapeRoomGamePanel.add(passCodeDisplay);
-            EscapeRoomGamePanel.updateUI();
-        }
-
-        EscapeRoomGamePanel.updateUI();
-
     }
-    public static void passCode(){
 
-    }
     public static void back(){
         EscapeRoomGamePanel.removeAll();
         EscapeRoomGamePanel.add(goToTheDoor);
@@ -299,6 +300,9 @@ public class EscapeRoom {
     }
     public static void underBed(){
 
+        EscapeRoomGameWindow.dispose();
+        JOptionPane.showMessageDialog(null, "YOU DIE");
+
     }
     public static void phone(){
         EscapeRoomGamePanel.removeAll();
@@ -308,6 +312,7 @@ public class EscapeRoom {
         EscapeRoomGamePanel.add(zachMessage);
         EscapeRoomGamePanel.add(aignerMessage);
         EscapeRoomGamePanel.add(checkMessages);
+        EscapeRoomGamePanel.add(backToMain);
         EscapeRoomGamePanel.updateUI();
 
     }
@@ -360,10 +365,16 @@ public class EscapeRoom {
     }
     public static void unLockDoor(){
 
-    }
-    public static void openDresser(){
-
-        //Esc
+        if (topLeftNumber1.isSelected()){
+            if (middleMiddleNumber5.isSelected()){
+                if (bottomRightNumber9.isSelected()){
+                    if (topRightNumber3.isSelected()){
+                        EscapeRoomGameWindow.dispose();
+                        JOptionPane.showMessageDialog(null, "Escaped");
+                    }
+                }
+            }
+        }
 
     }
     //button actions listeners
@@ -433,6 +444,18 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             phoneLog();
+        }
+    }
+    private static class underBedButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            underBed();
+        }
+    }
+    private static class passWord implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            unLockDoor();
         }
     }
 
