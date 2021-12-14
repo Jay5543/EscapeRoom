@@ -36,6 +36,10 @@ public class EscapeRoom {
     static JButton goToTheDoor;
     static JButton backToMain;
 
+    //secrect buttons
+    static JButton hiddenButton;
+
+
     //Pass Code
     static JCheckBox topLeftNumber1;
     static JCheckBox topMiddleNumber2;
@@ -47,6 +51,17 @@ public class EscapeRoom {
     static JCheckBox bottomMiddleNumber8;
     static JCheckBox bottomRightNumber9;
     // J-Labels
+
+        //Dailog
+        static  JLabel homeScreen;
+        static JLabel bedDialog;
+        static JLabel phoneDialog;
+            static JLabel momResponce;
+            static JLabel dadResponces;
+            static JLabel unknowmResponces;
+            static JLabel zachResponces;
+            static JLabel aignerResponce;
+        static JLabel passcodeDialog;
 
         //PassCode Label
         static JLabel passCodeDisplay;
@@ -435,6 +450,7 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             JOptionPane.showMessageDialog(null, "Empty");
+            EscapeRoomGamePanel.add(hiddenButton);
         }
     }
     private static class note implements ActionListener{
