@@ -375,6 +375,21 @@ public class EscapeRoom {
                 }
             }
         }
+        if(topMiddleNumber2.isSelected()){
+            JOptionPane.showMessageDialog(null, "Wrong Password");
+        }
+        if (middleLeftNumber4.isSelected()){
+            JOptionPane.showMessageDialog(null, "Wrong Password");
+        }
+        if (middleRightNumber6.isSelected()){
+            JOptionPane.showMessageDialog(null, "Wrong Password");
+        }
+        if (bottomLeftNumber7.isSelected()){
+            JOptionPane.showMessageDialog(null, "Wrong Password");
+        }
+        if (bottomMiddleNumber8.isSelected()){
+            JOptionPane.showMessageDialog(null, "Wrong Password");
+        }
 
     }
     //button actions listeners
