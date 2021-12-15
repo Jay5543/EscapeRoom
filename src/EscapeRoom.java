@@ -221,6 +221,49 @@ public class EscapeRoom {
         backToMain.addActionListener(new backToMainListener());
 
         //Labels
+        homeScreen = new JLabel("What? ... How did I wake up standing up?");
+        EscapeRoomGamePanel.add(homeScreen);
+        homeScreen.setBounds(400, 200, 500, 40);
+
+        bedDialog = new JLabel("My bed is a mess i really need to clean it up.");
+        EscapeRoomGamePanel.add(bedDialog);
+        bedDialog.setBounds(400, 50, 500, 40);
+        EscapeRoomGamePanel.remove(bedDialog);
+
+        phoneDialog = new JLabel("The same people, the only people I need");
+        EscapeRoomGamePanel.add(phoneDialog);
+        phoneDialog.setBounds(400, 200, 500, 40);
+        EscapeRoomGamePanel.remove(phoneDialog);
+
+        momResponce = new JLabel("Dad has it doesn't he");
+        EscapeRoomGamePanel.add(momResponce);
+        momResponce.setBounds(400, 200, 500, 40);
+        EscapeRoomGamePanel.remove(momResponce);
+
+        dadResponces = new JLabel("I knew it");
+        EscapeRoomGamePanel.add(dadResponces);
+        dadResponces.setBounds(400, 200, 500, 40);
+        EscapeRoomGamePanel.remove(dadResponces);
+
+        unknowmResponces = new JLabel("...");
+        EscapeRoomGamePanel.add(unknowmResponces);
+        unknowmResponces.setBounds(400, 200, 500, 40);
+        EscapeRoomGamePanel.remove(unknowmResponces);
+
+        zachResponces = new JLabel("Man NO");
+        EscapeRoomGamePanel.add(zachResponces);
+        zachResponces.setBounds(400, 200, 500, 40);
+        EscapeRoomGamePanel.remove(zachResponces);
+
+        aignerResponce = new JLabel("I LOVE MY GF... Your playing as me btw...");
+        EscapeRoomGamePanel.add(aignerResponce);
+        aignerResponce.setBounds(400, 200, 500, 40);
+        EscapeRoomGamePanel.remove(aignerResponce);
+
+        passcodeDialog = new JLabel("What this was never on my door");
+        EscapeRoomGamePanel.add(passcodeDialog);
+        passcodeDialog.setBounds(400, 200, 500, 40);
+        EscapeRoomGamePanel.remove(passcodeDialog);
 
         passCodeDisplay = new JLabel("ESCAPED");
         EscapeRoomGamePanel.add(passCodeDisplay);
@@ -269,6 +312,8 @@ public class EscapeRoom {
     //Door
     public static void door() {
 
+        EscapeRoomGamePanel.remove(homeScreen);
+        EscapeRoomGamePanel.add(passcodeDialog);
         EscapeRoomGamePanel.add(unLock);
         EscapeRoomGamePanel.add(topLeftNumber1);
         EscapeRoomGamePanel.add(topMiddleNumber2);
@@ -321,6 +366,8 @@ public class EscapeRoom {
     }
     public static void phone(){
         EscapeRoomGamePanel.removeAll();
+        EscapeRoomGamePanel.add(phoneDialog);
+        EscapeRoomGamePanel.remove(bedDialog);
         EscapeRoomGamePanel.add(momMessage);
         EscapeRoomGamePanel.add(dadMessage);
         EscapeRoomGamePanel.add(unKnownMessage);
@@ -333,47 +380,75 @@ public class EscapeRoom {
     }
     public static void phoneLog(){
         if (momMessage.isSelected()){
+            EscapeRoomGamePanel.remove(phoneDialog);
             EscapeRoomGamePanel.remove(dadMessageLog);
             EscapeRoomGamePanel.remove(momMessageLog);
             EscapeRoomGamePanel.remove(unKnownMessageLog);
             EscapeRoomGamePanel.remove(zachMessageLog);
             EscapeRoomGamePanel.remove(aignerMessageLog);
+            EscapeRoomGamePanel.remove(dadResponces);
+            EscapeRoomGamePanel.remove(unknowmResponces);
+            EscapeRoomGamePanel.remove(zachResponces);
+            EscapeRoomGamePanel.remove(aignerResponce);
             EscapeRoomGamePanel.add(momMessageLog);
+            EscapeRoomGamePanel.add(momResponce);
             EscapeRoomGamePanel.updateUI();
         }
         if (dadMessage.isSelected()){
+            EscapeRoomGamePanel.remove(phoneDialog);
             EscapeRoomGamePanel.remove(momMessageLog);
             EscapeRoomGamePanel.remove(unKnownMessageLog);
             EscapeRoomGamePanel.remove(zachMessageLog);
             EscapeRoomGamePanel.remove(aignerMessageLog);
+            EscapeRoomGamePanel.remove(momResponce);
+            EscapeRoomGamePanel.remove(unknowmResponces);
+            EscapeRoomGamePanel.remove(zachResponces);
+            EscapeRoomGamePanel.remove(aignerResponce);
             EscapeRoomGamePanel.add(dadMessageLog);
+            EscapeRoomGamePanel.add(dadResponces);
             EscapeRoomGamePanel.updateUI();
         }
         if (unKnownMessage.isSelected()){
+            EscapeRoomGamePanel.remove(phoneDialog);
             EscapeRoomGamePanel.remove(zachMessageLog);
             EscapeRoomGamePanel.remove(aignerMessageLog);
             EscapeRoomGamePanel.remove(dadMessageLog);
             EscapeRoomGamePanel.remove(momMessageLog);
+            EscapeRoomGamePanel.remove(momResponce);
+            EscapeRoomGamePanel.remove(dadResponces);
+            EscapeRoomGamePanel.remove(zachResponces);
+            EscapeRoomGamePanel.remove(aignerResponce);
             EscapeRoomGamePanel.add(unKnownMessageLog);
+            EscapeRoomGamePanel.add(unknowmResponces);
             EscapeRoomGamePanel.updateUI();
         }
         if (zachMessage.isSelected()){
-
+            EscapeRoomGamePanel.remove(phoneDialog);
             EscapeRoomGamePanel.remove(unKnownMessageLog);
             EscapeRoomGamePanel.remove(aignerMessageLog);
             EscapeRoomGamePanel.remove(dadMessageLog);
             EscapeRoomGamePanel.remove(momMessageLog);
+            EscapeRoomGamePanel.remove(momResponce);
+            EscapeRoomGamePanel.remove(dadResponces);
+            EscapeRoomGamePanel.remove(unknowmResponces);
+            EscapeRoomGamePanel.remove(aignerResponce);
             EscapeRoomGamePanel.add(zachMessageLog);
+            EscapeRoomGamePanel.add(zachResponces);
             EscapeRoomGamePanel.updateUI();
 
         }
         if (aignerMessage.isSelected()){
-
+            EscapeRoomGamePanel.remove(phoneDialog);
             EscapeRoomGamePanel.remove(momMessageLog);
             EscapeRoomGamePanel.remove(unKnownMessageLog);
             EscapeRoomGamePanel.remove(zachMessageLog);
             EscapeRoomGamePanel.remove(dadMessageLog);
+            EscapeRoomGamePanel.remove(momResponce);
+            EscapeRoomGamePanel.remove(dadResponces);
+            EscapeRoomGamePanel.remove(unknowmResponces);
+            EscapeRoomGamePanel.remove(zachResponces);
             EscapeRoomGamePanel.add(aignerMessageLog);
+            EscapeRoomGamePanel.add(aignerResponce);
             EscapeRoomGamePanel.updateUI();
 
         }
@@ -430,8 +505,10 @@ public class EscapeRoom {
     private static class bedButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
+            EscapeRoomGamePanel.remove(homeScreen);
             EscapeRoomGamePanel.remove(goToTheDoor);
             EscapeRoomGamePanel.remove(bedButtonThatBringsYouToTheBed);
+            EscapeRoomGamePanel.add(bedDialog);
             EscapeRoomGamePanel.add(bedButtonThatMakesYouLookUnderTheBed);
             EscapeRoomGamePanel.add(bedButtonThatMakesYouLookOnTheBed);
             EscapeRoomGamePanel.add(lookAtDresser);
