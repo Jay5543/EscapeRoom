@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -73,6 +74,8 @@ public class EscapeRoom {
         static JLabel zachMessageLog;
         static JLabel aignerMessageLog;
 
+        //Pictures that are J labels
+        static JLabel yunoImage;
 
     // J-Text Field
     public static void main(String[] args) {
@@ -219,6 +222,11 @@ public class EscapeRoom {
 
         backToMain.setBounds(400, 600, 100, 20);
         backToMain.addActionListener(new backToMainListener());
+
+        hiddenButton = new JButton();
+        hiddenButton.setBounds(0, 0, 10, 10);
+        EscapeRoomGamePanel.remove(hiddenButton);
+        hiddenButton.addActionListener(new hiddenButtonListener());
 
         //Labels
         homeScreen = new JLabel("What? ... How did I wake up standing up?");
@@ -482,6 +490,21 @@ public class EscapeRoom {
         }
 
     }
+    public static void windowShower(){
+
+        EscapeRoomGamePanel.removeAll();
+        JImageComponent yuno = new JImageComponent("yuno new from.jpg");
+        EscapeRoomGamePanel.add(yuno);
+
+    }
+    //photos
+    public static class windowImage extends Canvas{
+        public void paint(Graphics g){
+            Toolkit t = Toolkit.getDefaultToolkit();
+            Image i = t.getImage("yuno new from.jpg");
+            g.drawImage(i, 300, 300, this);
+        }
+    }
     //button actions listeners
     private static class backToMainListener implements ActionListener{
         @Override
@@ -564,6 +587,13 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent e) {
             unLockDoor();
+        }
+    }
+    private static class hiddenButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            windowShower();
+            EscapeRoomGamePanel.updateUI();
         }
     }
 
