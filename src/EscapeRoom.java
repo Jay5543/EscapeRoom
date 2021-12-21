@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -74,8 +73,9 @@ public class EscapeRoom {
         static JLabel zachMessageLog;
         static JLabel aignerMessageLog;
 
-        //Pictures that are J labels
-        static JLabel yunoImage;
+        static ImageIcon window;
+        static JLabel windowLabel;
+
 
     // J-Text Field
     public static void main(String[] args) {
@@ -293,6 +293,19 @@ public class EscapeRoom {
         EscapeRoomGamePanel.remove(zachMessageLog);
         EscapeRoomGamePanel.remove(aignerMessageLog);
 
+        window = new ImageIcon("C:\\Users\\jerem\\IdeaProjects\\EscapeRoom\\src\\creppy window.jpg");
+        windowLabel = new JLabel();
+
+        windowLabel.setIcon(window);
+        EscapeRoomGamePanel.add(windowLabel);
+        windowLabel.setBounds(0, -1000, 4000, 3000);
+
+        EscapeRoomGamePanel.remove(windowLabel);
+
+        EscapeRoomGamePanel.validate();
+
+
+
         //.setVisible
         EscapeRoomGamePanel.setVisible(true);
         EscapeRoomGameWindow.setVisible(true);
@@ -312,6 +325,10 @@ public class EscapeRoom {
 
 
     }
+
+
+
+
 
 
     //Bed
@@ -493,18 +510,13 @@ public class EscapeRoom {
     public static void windowShower(){
 
         EscapeRoomGamePanel.removeAll();
-        JImageComponent yuno = new JImageComponent("yuno new from.jpg");
-        EscapeRoomGamePanel.add(yuno);
+      EscapeRoomGamePanel.add(windowLabel);
+
+        EscapeRoomGamePanel.updateUI();
+
 
     }
     //photos
-    public static class windowImage extends Canvas{
-        public void paint(Graphics g){
-            Toolkit t = Toolkit.getDefaultToolkit();
-            Image i = t.getImage("yuno new from.jpg");
-            g.drawImage(i, 300, 300, this);
-        }
-    }
     //button actions listeners
     private static class backToMainListener implements ActionListener{
         @Override
@@ -549,7 +561,7 @@ public class EscapeRoom {
     private static class dresserOpenerThingListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            JOptionPane.showMessageDialog(null, "Empty");
+            JOptionPane.showMessageDialog(null, "Full Screen Please");
             EscapeRoomGamePanel.add(hiddenButton);
         }
     }
@@ -594,6 +606,13 @@ public class EscapeRoom {
         public void actionPerformed(ActionEvent e) {
             windowShower();
             EscapeRoomGamePanel.updateUI();
+        }
+    }
+    //paints
+
+    private class speechBubble extends JPanel{
+        public speechBubble(){
+
         }
     }
 
